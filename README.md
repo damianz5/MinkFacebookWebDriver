@@ -5,6 +5,53 @@ the [facebook php webdriver](https://github.com/facebook/php-webdriver).
 
 See [https://github.com/minkphp/MinkSelenium2Driver/issues/254] for the status of selenium 3 support.
 
+
+
+changes:
+
+```
+cd src/
+git clone https://github.com/damianz5/MinkFacebookWebDriver.git MinkFacebookWebDriver
+```
+
+```
+    "autoload": {
+        "psr-4": {
+            "AppBundle\\": "src/AppBundle/",
+            "SilverStripe\\": "src/MinkFacebookWebDriver/src/"
+        },
+        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
+    },
+
+composer require facebook/webdriver ^1.4
+```
+
+```
+composer dumpautoload -o
+```
+
+behat.yml
+```
+    extensions:
+        SilverStripe\MinkFacebookWebDriver\MinkExtension:
+            base_url: 'http://thepage.devx'
+            default_session: facebook_web_driver
+            javascript_session: facebook_web_driver
+            facebook_web_driver:
+                browser: chrome
+                wd_host: "http://127.0.0.1:9515" #chromedriver port
+                #wd_host: 'http://localhost:4444/wd/hub'
+        
+```
+
+```
+cd src/
+git clone https://github.com/damianz5/MinkFacebookWebDriver.git MinkFacebookWebDriver
+```
+
+
+
+
 Major updates include:
 
  - Switch to using facebook/webdriver
